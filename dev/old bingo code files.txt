@@ -1,0 +1,81 @@
+OLD BINGO CODE
+
+game.h
+struct bingo_task
+{
+	// Task Descriptors
+	std::string label; /**< Name of the task. Also the label of the button when labels are enabled. For this reason it is the only way to identify a tile with no image. */
+	std::string desc; /**< A longer form description of the task this tile represents. When the user single-clicks a task this will be presented as the description of the task. */
+
+	// Game Rule values
+	double dist; /**< A normalized double representing the distribution of this tile. */
+
+};
+
+struct bingo_game
+{
+	unsigned short n; /**< The dimension of the nxn bingo card. */
+	unsigned short linesToWin; /**< The number of lines required to win. */
+
+	std::vector<bingo_task> tasks; /**< The vector of size nxn containing bingo_tasks */
+};
+
+struct bingo_grid
+{
+
+};
+
+tile.h
+#ifndef TILE_H_INCLUDED
+#define TILE_H_INCLUDED
+
+/*
+	\brief The tile class is a device to enable some graphical representation of the underlying bingo_task.
+
+	Each tile contains a bingo_task which is the most important member of the class. Everything else is only a graphical meaning of the underlying task:
+	For instance a task would be "Collect 4 Stars in Bob-Omb Battlefield" when the tile contains information used to render the tile, enable interactivity; the tile is the in-app representation of the task. Nothing from tile with the exception of the bingo_task itself is determined by the task, so two tiles may not be equal between seeds but the tasks they represent are. It's important to note that members of Tile and their implementation will change from one front-end implementation to another.
+
+*/
+class tile
+{
+private:
+	Vector2 pos; /**< Position of the tile in pixels. Used for drawing and mouse detection. */
+	Vector2 sz; /**< Size of the tile in pixels. Used for drawing and mouse detection. */
+
+	int gridX; /**< X position on the bingo card, with 0 as the leftmost. Runtime only. */
+	int gridY; /**< Y position on the bingo card, with 0 as the topmost. Runtime only. */
+
+	// these members are moved to bingo_task.
+	//std::string label; /**< Label of button when labels are enabled. The only way to identify a tile with no image. */
+	//std::string desc; /**< A longer form description of the task this tile represents. */
+	//double dist; /**< A double from 0 to 1 representing the distribution of this tile. */
+public:
+
+	/** GET METHODS */
+	Vector2 getPos() const;
+	Vector2 getSz() const;
+	int getGridX() const;
+	int getGridY() const;
+	std::string getLabel() const;
+	std::string getDesc() const;
+	double getDist() const;
+
+	/** SET METHODS */
+	void setPos(Vector2);
+	void setPos(float, float); /** float-setter for tile::pos */
+	void setSz(Vector2);
+	void setSz(float, float); /** float-setter for tile::sz */
+	void setGridX(int);
+	void setGridY(int);
+	void setLabel(std::string);
+	void setDesc(std::string);
+	void setDist(double);
+
+	Rectangle rect();
+
+	/** DRAWING FUNCTIONS */
+	void DrawTile();
+};
+
+#endif // TILE_H_INCLUDED
+

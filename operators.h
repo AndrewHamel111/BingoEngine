@@ -30,7 +30,7 @@ float Vector2SqrMagnitude(const Vector2& x);  /**< SqrMagnitude of a Vector2 */
 float Vector2Magnitude(const Vector2& x);  /**< Magnitude of a Vector2 (MUCH SLOWER) */
 
 ///////////////////
-// Game Specific //
+// App Specific //
 ///////////////////
 
 

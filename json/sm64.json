@@ -1,0 +1,107 @@
+{
+  "name": "70 Star Bingo",
+  "game": "Super Mario 64",
+  "card-dimension": 5,
+  "tasks": [
+		{
+			"name" : "Defeat King Bob-omb",
+			"desc" : "In Bob-omb Battlefield, collect 'Big Bob-omb on the Summit'!"
+		},
+		{
+			"name" : "Collect 20 Lives",
+			"desc" : "Collect 20 extra lives"
+		},
+		{
+			"name" : "TTC 100 coins",
+			"desc" : "Collect the 100 coins star in Tick Tock Clock"
+		},
+		{
+			"name" : "BitS Reds",
+			"desc" : "Collect the red coin star in Bowser in the Sky"
+		},
+		{
+			"name" : "Any JRB Star",
+			"desc" : "This one's for Simon <3"
+		},
+		{
+			"name" : "Metal Cap Reds",
+			"desc" : "Even though you don't need it, go ahead and get the red coin star for the Metal Cap."
+		},
+		{
+			"name" : "task 7",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 8",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 9",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 10",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 11",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 12",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 13",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 14",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 15",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 16",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 17",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 18",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 19",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 20",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 21",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 22",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 23",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 24",
+			"desc" : "null"
+		},
+		{
+			"name" : "task 25",
+			"desc" : "null"
+		}
+  ]
+}

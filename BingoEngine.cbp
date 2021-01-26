@@ -24,6 +24,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="HTTPRequest.hpp" />
+		<Unit filename="Makefile" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
 		<Unit filename="constants.h" />
@@ -31,11 +32,13 @@
 		<Unit filename="dool.h" />
 		<Unit filename="files.cpp" />
 		<Unit filename="files.h" />
+		<Unit filename="game.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="network.cpp" />
 		<Unit filename="network.hpp" />
 		<Unit filename="operators.cpp" />
 		<Unit filename="operators.h" />
+		<Unit filename="tile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

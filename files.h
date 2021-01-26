@@ -7,11 +7,14 @@
 #include <nlohmann/json.hpp>
 
 #include <string>
+#include <vector>
 #include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <exception>
 #include <algorithm>
+
+#include "bingo.h"
 
 // for convenience
 using json = nlohmann::json;
@@ -23,5 +26,8 @@ struct JSONBingoException : public std::exception
 		return "Bingo file was not a valid JSON representation of a Bingo set.";
 	}
 };
+
+std::vector<bingo_task> GetTasksFromJSON(std::string filename);
+
 
 #endif // FILES_H_INCLUDED
