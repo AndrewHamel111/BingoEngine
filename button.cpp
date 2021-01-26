@@ -96,26 +96,31 @@ void button::setLabel(std::string str)
 {
 	// update label value
 	this->label = str;
-	int fontSize = FONT_SIZE;
-
-	// measure the label size
-	this->labelLength = MeasureText(str.c_str(), fontSize);
-
-	// repeatedly reduce the font size until it fits in the button
-	while(this->labelLength > (this->bounds.width - (2 * fontSize)) && fontSize > 5)
-	{
-		fontSize--;
-		this->labelLength = MeasureText(str.c_str(), fontSize);
-	}
-
-	this->labelHeight = MeasureTextEx(GetFontDefault(), str.c_str(), fontSize, 1.15).y;
-	this->labelSize = fontSize;
+	fixFontSize();
 }
 
 void button::setLabel(const char* str)
 {
 	std::string _str(str);
 	setLabel(_str);
+}
+
+void button::fixFontSize()
+{
+	int fontSize = FONT_SIZE;
+
+	// measure the label size
+	this->labelLength = MeasureText(label.c_str(), fontSize);
+
+	// repeatedly reduce the font size until it fits in the button
+	while(this->labelLength > (this->bounds.width - (2 * fontSize)) && fontSize > 5)
+	{
+		fontSize--;
+		this->labelLength = MeasureText(label.c_str(), fontSize);
+	}
+
+	this->labelHeight = MeasureTextEx(GetFontDefault(), label.c_str(), fontSize, 1.15).y;
+	this->labelSize = fontSize;
 }
 
 void button::setColorsAuto(Color base)

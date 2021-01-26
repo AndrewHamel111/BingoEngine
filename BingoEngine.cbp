@@ -23,8 +23,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="HTTPRequest.hpp" />
 		<Unit filename="Makefile" />
+		<Unit filename="bingo.h" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
 		<Unit filename="constants.h" />
@@ -35,10 +35,12 @@
 		<Unit filename="game.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="network.cpp" />
-		<Unit filename="network.hpp" />
 		<Unit filename="operators.cpp" />
 		<Unit filename="operators.h" />
+		<Unit filename="tile.cpp" />
 		<Unit filename="tile.h" />
+		<Unit filename="utilities.cpp" />
+		<Unit filename="utilities.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

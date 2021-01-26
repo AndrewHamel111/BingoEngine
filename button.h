@@ -63,6 +63,7 @@ public:
 	// access methods
 	void setLabel(std::string);
 	void setLabel(const char*);
+	void fixFontSize();
 
 	void setColorsAuto(Color base); /**< Provide a base color and the focus/pressed colors will be automatically generated. */
 	void setColorsAuto(Color base, Color press); /**< Provide a base and pressed color and a focus color is automatically generated. */

@@ -1,4 +1,4 @@
-_files = main.cpp dool.cpp operators.cpp button.cpp files.cpp tile.cpp
+_files = main.cpp dool.cpp operators.cpp button.cpp files.cpp tile.cpp utilities.cpp
 files = $(addprefix $(CURRENT_DIRECTORY), $(_files))
 
 RAYLIB_PATH=C:\raylb\raylib

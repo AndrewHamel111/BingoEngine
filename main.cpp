@@ -3,11 +3,16 @@
 #define MUSTARD CLITERAL(Color){ 203, 182, 51, 255}
 
 #define DEV_SHOW_MOUSE_POS
+#define WINDOW_MIN_WIDTH 500
+#define WINDOW_MIN_HEIGHT 500
+#define INFO_PANEL_WIDTH 400
+#define INFO_PANEL_PADDING 15
 
 #include "constants.h"
 #include "button.h"
 #include "bingo.h"
 #include "tile.h"
+#include "utilities.h"
 
 #include "files.h"
 
@@ -18,18 +23,21 @@
 
 using namespace std;
 
+void FixTileGrid(std::vector<tile>&, int, int);
+
 int main()
 {
 	// Initialization
 	//--------------------------------------------------------------------------------------
-	const int screenWidth = 750;
-	const int screenHeight = 750;
+	int screenWidth = 750;
+	int screenHeight = 750;
 
-	const int TILE_WIDTH = screenWidth/5;
-	const int TILE_HEIGHT = screenHeight/5;
+	int TILE_WIDTH = screenWidth/5;
+	int TILE_HEIGHT = screenHeight/5;
 
 	InitWindow(screenWidth, screenHeight, "Basic Bingo Engine");
-	//SetWindowState(FLAG_WINDOW_RESIZABLE);
+	SetWindowState(FLAG_WINDOW_RESIZABLE);
+	SetWindowMinSize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT);
 	InitAudioDevice();
 	SetMasterVolume(0.5f);
 
@@ -45,33 +53,9 @@ int main()
 
 	/// Load textures
 
-
 	/// Load sounds
 
 	/// Prepare Game Objects
-	Rectangle r{0,0,200,100};
-	button b1(r, RAYWHITE, "Hello", NEARBLACK);
-	r.y += 100;
-	button b2(r, RAYWHITE, "Goodbye", NEARBLACK);
-
-	bingo_task task;
-	task.name = "Example Task";
-	task.desc = "You gotta do the thing and do it right!";
-	task.weight = 1;
-
-	// create a numbered list of tasks and shuffle them
-	/*
-	std::vector<bingo_task> tasks;
-	for(int i = 0; i < 25; i++)
-	{
-		task.name = std::string(FormatText("Task #%d", i + 1));
-		tasks.push_back(task);
-	}
-	std::random_device rd;
-	std::mt19937 g(rd());
-	g.seed(std::time(0));
-	std::shuffle(tasks.begin(), tasks.end(), g);
-	*/
 
 	// load tasks from file
 	std::vector<bingo_task> tasks = GetTasksFromJSON("json/sm64.json");
@@ -79,7 +63,6 @@ int main()
 	std::mt19937 g(rd());
 	g.seed(std::time(0));
 	std::shuffle(tasks.begin(), tasks.end(), g);
-
 
 	// now create the tiles
 	std::vector<tile> tiles;
@@ -91,6 +74,11 @@ int main()
 		tiles.push_back(t); // add to vector
 	}
 
+	// flags and vars
+	bool showPanel = false;
+
+	//--------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
@@ -101,11 +89,53 @@ int main()
 		// TODO: Update variables / Implement example logic at this point
 		//----------------------------------------------------------------------------------
 
+		if(IsWindowResized())
+		{
+			screenWidth = GetScreenWidth();
+			screenHeight = GetScreenHeight();
+			TILE_WIDTH = screenWidth/5;
+			TILE_HEIGHT = screenHeight/5;
+
+			FixTileGrid(tiles, TILE_WIDTH, TILE_HEIGHT);
+		}
+
+		// reset window size to 750 x 750 (and disable panel)
+		if (IsKeyPressed(KEY_R))
+		{
+			showPanel = false;
+
+			screenWidth = 750;
+			screenHeight = 750;
+			TILE_WIDTH = screenWidth/5;
+			TILE_HEIGHT = screenHeight/5;
+
+			SetWindowSize(screenWidth, screenHeight);
+			FixTileGrid(tiles, TILE_WIDTH, TILE_HEIGHT);
+		}
+
+		// toggle panel
+		/*
+		if (IsKeyPressed(KEY_I))
+		{
+			showPanel = !showPanel;
+			if (showPanel)
+			{
+				SetWindowSize(screenWidth, screenHeight);
+				SetWindowMinSize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT);
+			}
+			else
+			{
+				SetWindowSize(screenWidth, screenHeight);
+				SetWindowMinSize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT);
+			}
+		}
+		*/
+
 		// Draw
 		//----------------------------------------------------------------------------------
 		BeginDrawing(); /// DRAW START
 
-		ClearBackground(WHITE);
+		ClearBackground(NEARBLACK);
 		Vector2 m = GetMousePosition();
 
 		auto iEnd = tiles.end();
@@ -113,24 +143,6 @@ int main()
 		{
 			i->update(m);
 		}
-
-		/* color demo
-		b1.update(m);
-		b2.update(m);
-
-		if (b1.pressed)
-		{
-			b1.pressed = false;
-			// randomize the colors
-			Color col{GetRandomValue(15,240),GetRandomValue(15,240),GetRandomValue(15,240),255};
-			b2.setColorsAuto(col);
-		}
-		else if (b2.pressed)
-		{
-			b2.pressed = false;
-			break;
-		}
-		*/
 
 		EndDrawing();	/// DRAW END
 		//----------------------------------------------------------------------------------
@@ -146,4 +158,17 @@ int main()
 	//--------------------------------------------------------------------------------------
 
 	return 0;
+}
+
+void FixTileGrid(std::vector<tile> &t , int w, int h)
+{
+	for(int i = 0; i < 25; i++)
+	{
+		t[i].bounds.x = (i%5)*w; // move the tile into place
+		t[i].bounds.y = (i/5)*h;
+		t[i].bounds.width = w;
+		t[i].bounds.height = h;
+
+		t[i].fixFontSize();
+	}
 }
