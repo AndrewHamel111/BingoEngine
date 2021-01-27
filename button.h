@@ -3,18 +3,26 @@
 
 #include "raylib.h"
 #include "operators.h"
+#include "utilities.h"
 #include <string>
 #include <cstring>
 
 #define SLIDER_HANDLE_HEIGHT 30
 #define SLIDER_HEIGHT 20
 #define FONT_SIZE 30
+#define BORDER_SIZE 10
+#define BORDER_DIFF 25
+#define BUTTON_COLOR_DIFF 30
 
 #define COL_FOCUS CLITERAL(Color){ 213, 239, 247, 255}
 #define COL_PRESSED CLITERAL(Color){ 123, 191, 212, 255}
 #define NEARBLACK CLITERAL(Color){ 20, 20, 20, 255}
 
 #define ZERO_R CLITERAL(Rectangle){ 0, 0, 0, 0}
+
+enum button_style {
+	DEFAULT, OUTSET, INSET, BORDER
+};
 
 class button
 {
@@ -46,6 +54,8 @@ public:
 	std::string atlasName; /**< Name of the appropriate atlas to draw button from. */
 	bool noDraw; /**< When true the button will not be displayed but still functions. */
 	bool enabled; /**< When false the button will not have any function. */
+	// style
+	button_style style; /**< Enum descriptor of button styles, used by button::draw. */
 
 	// states
 	bool pressed; /**< True when button has been pressed. Any calling methods checking the state of pressed and using it to trigger an event are responsible for unsetting the pressed value. */

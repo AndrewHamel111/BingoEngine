@@ -125,3 +125,8 @@ void tile::update(Vector2 m)
 	if (!noDraw)
 		this->draw();
 }
+
+bool tile::isFocused() const
+{
+	return v_focus;
+}

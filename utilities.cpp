@@ -22,6 +22,13 @@ void ShowMessage(const char* msg, int fontSize, int posX, int posY, BoxAnchor an
 		rec.height = measure.y + fontSize;
 		rec.x = posX - rec.width/2;
 	}
+	else if (anchor == BOTTOM_CENTER)
+	{
+		rec.width = measure.x + fontSize;
+		rec.height = measure.y + fontSize;
+		rec.x = posX - rec.width/2;
+		rec.y = posY - rec.height;
+	}
 	else
 	{
 		rec.width = measure.x + fontSize;
@@ -46,4 +53,26 @@ void ShowMessage(const char* msg, int fontSize, int posX, int posY, BoxAnchor an
 void ShowMessage(std::string msg, int fontSize, int posX, int posY, BoxAnchor anchor)
 {
 	ShowMessage(msg.c_str(), fontSize, posX, posY);
+}
+
+Color brightenColorBy(Color c, int a)
+{
+	return Color{(unsigned char)std::min(255, (int)c.r + a),
+	(unsigned char)std::min(255, (int)c.g + a),
+	(unsigned char)std::min(255, (int)c.b + a),c.a
+	};
+}
+
+Color darkenColorBy(Color c, int a)
+{
+	return Color{(unsigned char)std::max(0, (int)c.r - a),
+	(unsigned char)std::max(0, (int)c.g - a),
+	(unsigned char)std::max(0, (int)c.b - a), c.a
+	};
+}
+
+Color getColorAverage(Color c1, Color c2)
+{
+	return Color{(unsigned char)(((int)c1.r + (int)c2.r)/2), (unsigned char)(((int)c1.g + (int)c2.g)/2),
+	(unsigned char)(((int)c1.b + (int)c2.b)/2), (unsigned char)(((int)c1.a + (int)c2.a)/2)};
 }

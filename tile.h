@@ -31,6 +31,7 @@ public:
 
 	// access methods
 	void setTask(bingo_task);
+	bool isFocused() const;
 };
 
 #endif // TILE_H_
