@@ -27,9 +27,11 @@
 		<Unit filename="bingo.h" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
+		<Unit filename="buttonTest.cpp" />
 		<Unit filename="constants.h" />
 		<Unit filename="dool.cpp" />
 		<Unit filename="dool.h" />
+		<Unit filename="editor.cpp" />
 		<Unit filename="files.cpp" />
 		<Unit filename="files.h" />
 		<Unit filename="game.h" />

@@ -1,0 +1,5 @@
+https://wiki.freepascal.org/Form_Tutorial#The_first_GUI_app
+
+https://wiki.freepascal.org/File_Handling_In_Pascal
+
+https://wiki.freepascal.org/Lazarus_Documentation#Files
